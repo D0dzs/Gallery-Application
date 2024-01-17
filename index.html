@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Képkereső, galériás valamilyen oldal</title>
+
+    <!-- TAILWINDCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FANCY BOX GALLERY -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+
+    <!-- CUSTOM CSS -->
+    <style>
+        #imageWrapper {
+            grid-template-columns: repeat(auto-fill, 200px);
+        }
+
+        #imageWrapper a {
+            cursor: pointer;
+            transition: hover 200s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <button id="fetchButton" class="hidden fetchButton" onclick="fetchImages()"></button>
+    <main>
+        <div id="root" class="flex flex-col justify-center">
+            <div class="searchWrapper p-4 flex justify-center items-center flex-col">
+                <h2 class="text-xl font-bold mb-2">
+                    Képkereső, galériás valamilyen oldal
+                </h2>
+                <div class="relative w-64">
+                    <input id="searchInput"
+                        class="transition-all flex h-10 w-full border border-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-8 rounded-full bg-gray-200 dark:bg-gray-800"
+                        placeholder="Search..." type="search" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </svg>
+                </div>
+            </div>
+            <div id="imageWrapper" class="grid gap-4 w-[848px] mx-auto"></div>
+        </div>
+    </main>
+
+    <!-- FANCYBOX INIT AND OPTIONS -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+        Fancybox.bind('[data-fancybox="gallery"]', {
+            Images: {
+                initialSize: "cover",
+            },
+            Panzoom: {
+                panMode: "mousemove",
+                mouseMoveFactor: 1.1,
+                mouseMoveFriction: 0.12,
+            },
+        });
+    </script>
+    <script src="script.js" defer></script>
+</body>
+
+</html>
